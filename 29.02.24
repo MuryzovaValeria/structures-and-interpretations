@@ -1,0 +1,15 @@
+(define (power-series n f)
+  (define (accumulate i j result)
+    (if (> i n)
+        result
+        (accumulate (+ i 2) (+ j 1) (exact->inexact(f result (/ j i))))))
+  (accumulate 3 2 0))
+
+(define (power-series-operations n op)
+  (cond ((equal? op '+) (power-series n (lambda (x y) (+ x y))))
+        ((equal? op '-') (power-series n (lambda (x y) (- x y))))
+        ((equal? op '*)(power-series n (lambda (x y) (* x y))))
+        ((equal? op '/) (power-series n (lambda (x y) (/ x y))))
+        (else (error "Unknown operation"))))
+
+(display (power-series-operations 10 '+))
