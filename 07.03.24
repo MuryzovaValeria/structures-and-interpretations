@@ -1,0 +1,23 @@
+(define (make-rat n d)
+    (define (gcd a b)
+    (if (= b 0)
+        a
+        (gcd b (remainder a b))))
+  (define (reduce-rat x)
+    (let ((g (gcd (car x) (cdr x))))
+      (cons (/ (car x) g) (/ (cdr x) g))))
+  (reduce-rat (cons n d)))
+
+(define (numer x) (car x))
+    
+(define (denom x) (cdr x))
+        
+(define (print-rat x)
+    (newline)
+    (display (numer x))
+    (display "/")
+    (display (denom x)))
+        
+(define one-half (make-rat 1 2))
+        
+(print-rat one-half)
