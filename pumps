@@ -1,0 +1,19 @@
+(define (centrifugal-type w h)
+  (if w
+      (* w w)
+      (* h h)))
+
+(define (screw-type w h)
+  (if w
+      (* w 2)
+      (* h 2)))
+
+(define (pump-type type w h)
+  (cond
+    ((equal? type 'centrifugal) (centrifugal-type w h))
+    ((equal? type 'screw) (screw-type w h))
+    (else "Unknown pump type")))
+
+(display (pump-type 'centrifugal 3 #f)) ; 9
+(newline)
+(display (pump-type 'screw #f 4)) ; 8
